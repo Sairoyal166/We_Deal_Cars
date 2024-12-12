@@ -1,0 +1,45 @@
+document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    });
+
+    const data = await response.json();
+    if (data.error) {
+        alert(data.error);
+    } else {
+        alert(data.message);
+        if (data.user.role === 'admin') {
+            window.location.href = 'admin.html';
+        } else {
+            window.location.href = 'user.html';
+        }
+    }
+});
+document.getElementById('registerForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const mobile = e.target.mobile.value;
+    const address = e.target.address.value;
+
+    const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password, mobile, address })
+    });
+
+    const data = await response.json();
+    if (data.error) {
+        alert(data.error);
+    } else {
+        alert(data.message);
+        window.location.href = 'login.html';
+    }
+});

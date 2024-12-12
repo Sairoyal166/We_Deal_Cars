@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <nav>
+        <a href="#manage-users">Manage Users</a>
+        <a href="#manage-cars">Manage Cars</a>
+    </nav>
+
+    <!-- Manage Users Section -->
+    <section id="manage-users">
+        <h2>Manage Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="usersTable">
+                <!-- Users will be populated here -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Manage Cars Section -->
+    <section id="manage-cars">
+        <h2>Manage Cars</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Model</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="carsTable">
+                <!-- Cars will be populated here -->
+            </tbody>
+        </table>
+    </section>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

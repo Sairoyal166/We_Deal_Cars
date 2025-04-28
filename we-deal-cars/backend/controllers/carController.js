@@ -42,3 +42,24 @@ exports.editCar = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+exports.getCarsByUser = async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const cars = await Car.getByUserId(userId);
+        res.status(200).json(cars);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+exports.getCarById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const car = await Car.getById(id);
+        if (!car) return res.status(404).json({ error: 'Car not found' });
+        res.status(200).json(car);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};

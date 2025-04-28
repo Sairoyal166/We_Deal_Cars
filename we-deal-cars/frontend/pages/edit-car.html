@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Car</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <h1>
+        <a href="my-cars.html" style="text-decoration: none; margin-right: 10px;">⬅️</a>
+        Edit Car
+    </h1>
+
+    <form id="editCarForm">
+        <input type="text" name="model" placeholder="Car Model" required>
+        <input type="number" name="price" placeholder="Price" required>
+        <input type="text" name="image" placeholder="Image URL">
+        <textarea name="details" placeholder="Additional Details"></textarea>
+        <button type="submit">Update Car</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('editCarForm');
+        const carId = localStorage.getItem('editCarId'); // Get car ID from local storage
+
+        // Fetch the car details and fill the form
+        async function loadCarDetails() {
+            if (!carId) {
+                alert('No car selected.');
+                window.location.href = 'my-cars.html';
+                return;
+            }
+
+            const response = await fetch(`http://localhost:5000/api/cars/${carId}`);
+            const car = await response.json();
+
+            form.model.value = car.model;
+            form.price.value = car.price;
+            form.image.value = car.image;
+            form.details.value = car.details;
+        }
+
+        // Update car details
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const model = formData.get('model');
+            const price = formData.get('price');
+            const image = formData.get('image');
+            const details = formData.get('details');
+
+            const response = await fetch(`http://localhost:5000/api/cars/edit/${carId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ model, price, image, details })
+            });
+
+            if (response.ok) {
+                alert('Car updated successfully!');
+                localStorage.removeItem('editCarId');
+                window.location.href = 'my-cars.html'; // Go back to My Cars
+            } else {
+                alert('Failed to update car.');
+            }
+        });
+
+        loadCarDetails();
+    </script>
+</body>
+</html>

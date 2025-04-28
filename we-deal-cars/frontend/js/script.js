@@ -14,6 +14,8 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
         alert(data.error);
     } else {
         alert(data.message);
+        localStorage.setItem('userId', data.user.id);
+        localStorage.setItem('userName', data.user.name);
         if (data.user.role === 'admin') {
             window.location.href = 'admin.html';
         } else {
@@ -43,3 +45,13 @@ document.getElementById('registerForm')?.addEventListener('submit', async (e) =>
         window.location.href = 'login.html';
     }
 });
+
+function logout() {
+    // Clear localStorage
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('editCarId'); // Clear any edit car id also if needed
+
+    // Redirect to login page
+    window.location.href = 'login.html';
+}

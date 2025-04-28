@@ -71,6 +71,13 @@ class Car {
         const [rows] = await db.execute(sql, values);
         return rows;
     }
+    // Get all cars posted by a specific user
+static async getByUserId(userId) {
+    const sql = 'SELECT * FROM cars WHERE user_id = ?';
+    const [rows] = await db.execute(sql, [userId]);
+    return rows;
+}
+
 }
 
 module.exports = Car;

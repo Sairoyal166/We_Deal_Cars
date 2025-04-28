@@ -63,9 +63,20 @@ async function deleteCar(id) {
 
 // Edit Car (Dummy Function for Now)
 function editCar(id) {
-    alert(`Edit car with ID: ${id}`);
-}
+    localStorage.setItem('editCarId', id);
+    window.location.href = 'edit-car.html';}
 
 // Load Data on Page Load
 fetchUsers();
 fetchCars();
+
+function logout() {
+    // Clear localStorage
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('editCarId'); // Clear any edit car id also if needed
+
+    // Redirect to login page
+    window.location.href = 'login.html';
+}
+

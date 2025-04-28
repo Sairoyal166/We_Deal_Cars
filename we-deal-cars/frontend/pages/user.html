@@ -11,6 +11,19 @@
     <nav>
         <a href="sell-car.html">Sell My Car</a>
         <a href="buy-car.html">Buy a Car</a>
+        <a href="my-cars.html">My Cars</a>
+        <button onclick="logout()" style="margin-left: 20px;">Logout</button>
     </nav>
+    <script>
+        function logout() {
+            // Clear localStorage
+            localStorage.removeItem('userId');
+            localStorage.removeItem('userName');
+            localStorage.removeItem('editCarId'); // Clear any edit car id also if needed
+            
+            // Redirect to login page
+            window.location.href = 'login.html';
+        }
+    </script>
 </body>
 </html>

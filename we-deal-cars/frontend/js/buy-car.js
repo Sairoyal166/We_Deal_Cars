@@ -26,3 +26,14 @@ document.getElementById('filterForm').addEventListener('submit', (e) => {
 
 // Load Cars on Page Load
 fetchCars();
+
+
+function logout() {
+    // Clear localStorage
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('editCarId'); // Clear any edit car id also if needed
+    
+    // Redirect to login page
+    window.location.href = 'login.html';
+}

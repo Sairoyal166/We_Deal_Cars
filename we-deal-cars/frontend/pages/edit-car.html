@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>
-        <a href="my-cars.html" style="text-decoration: none; margin-right: 10px;">⬅️</a>
+        <a href="javascript:history.back()" style="text-decoration: none; margin-right: 10px;">⬅️</a>
         Edit Car
     </h1>
 
@@ -62,7 +62,8 @@
             if (response.ok) {
                 alert('Car updated successfully!');
                 localStorage.removeItem('editCarId');
-                window.location.href = 'my-cars.html'; // Go back to My Cars
+                userRole = localStorage.getItem('userRole')
+                window.location.href = userRole =='user' ?'my-cars.html':'admin.html#manage-cars'; // Go back to My Cars
             } else {
                 alert('Failed to update car.');
             }

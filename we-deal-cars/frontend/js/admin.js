@@ -75,6 +75,7 @@ function logout() {
     localStorage.removeItem('userId');
     localStorage.removeItem('userName');
     localStorage.removeItem('editCarId'); // Clear any edit car id also if needed
+      localStorage.removeItem('userRole');
 
     // Redirect to login page
     window.location.href = 'login.html';

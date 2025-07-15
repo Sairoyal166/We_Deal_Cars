@@ -7,6 +7,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
+        
     });
 
     const data = await response.json();
@@ -14,6 +15,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
         alert(data.error);
     } else {
         alert(data.message);
+        localStorage.setItem('userRole',data.user.role)
         localStorage.setItem('userId', data.user.id);
         localStorage.setItem('userName', data.user.name);
         if (data.user.role === 'admin') {
